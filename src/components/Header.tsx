@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
-import { Search, Menu, X, UserCircle } from "lucide-react";
+import { Search, Menu, X, UserCircle, BarChart3, Settings } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -101,9 +100,11 @@ const Header: React.FC = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onSelect={() => navigate("/profile")}>
+                    <UserCircle className="h-4 w-4 mr-2" />
                     Profile
                   </DropdownMenuItem>
                   <DropdownMenuItem onSelect={() => navigate("/settings")}>
+                    <Settings className="h-4 w-4 mr-2" />
                     Settings
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
@@ -184,16 +185,18 @@ const Header: React.FC = () => {
                 <>
                   <Link
                     to="/profile"
-                    className="px-3 py-2 rounded-md text-sm font-medium text-gray-600"
+                    className="px-3 py-2 rounded-md text-sm font-medium text-gray-600 flex items-center"
                     onClick={toggleMenu}
                   >
+                    <UserCircle className="h-4 w-4 mr-2" />
                     Profile
                   </Link>
                   <Link
                     to="/settings"
-                    className="px-3 py-2 rounded-md text-sm font-medium text-gray-600"
+                    className="px-3 py-2 rounded-md text-sm font-medium text-gray-600 flex items-center"
                     onClick={toggleMenu}
                   >
+                    <Settings className="h-4 w-4 mr-2" />
                     Settings
                   </Link>
                   <button

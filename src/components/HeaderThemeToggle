@@ -1,0 +1,19 @@
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { ThemeToggle } from './theme-toggle';
+
+interface HeaderThemeToggleProps {
+  className?: string;
+}
+
+const HeaderThemeToggle: React.FC<HeaderThemeToggleProps> = ({ className }) => {
+  const location = useLocation();
+  
+  return (
+    <div className={className}>
+      <ThemeToggle />
+    </div>
+  );
+};
+
+export default HeaderThemeToggle;

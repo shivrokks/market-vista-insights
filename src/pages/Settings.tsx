@@ -11,10 +11,11 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/components/ui/use-toast";
+import { useTheme } from "@/components/theme-provider";
 
 const Settings: React.FC = () => {
   const { toast } = useToast();
-  const [theme, setTheme] = useState<"light" | "dark" | "system">("light");
+  const { theme, setTheme } = useTheme();
   
   const [settings, setSettings] = useState({
     notificationsEnabled: true,
