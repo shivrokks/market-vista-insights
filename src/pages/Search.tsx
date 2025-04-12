@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -13,7 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
-import { getMockData, stocksAPI, watchlistAPI, Stock } from "@/services/api";
+import { stocksAPI, watchlistAPI, Stock } from "@/services/api";
 import { useAuth } from "@/contexts/AuthContext";
 import { Search as SearchIcon, Filter } from "lucide-react";
 
@@ -22,44 +21,40 @@ const Search = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user } = useAuth();
-  const [searchQuery, setSearchQuery] = useState("");
+
+  const params = new URLSearchParams(location.search);
+  const initialQuery = params.get("q") || "";
+  const initialFilter = params.get("filter") || "all";
+  const initialCategory = params.get("category") || "all";
+
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [searchResults, setSearchResults] = useState<Stock[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState(initialFilter);
+  const [category, setCategory] = useState(initialCategory);
 
-  // Parse query param on page load
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const q = params.get("q");
-    if (q) {
-      setSearchQuery(q);
-      handleSearch(q, filter);
+    if (initialQuery) {
+      handleSearch(initialQuery, initialFilter, initialCategory);
     }
-  }, [location.search]);
+  }, []);
 
-  const handleSearch = async (query: string = searchQuery, currentFilter: string = filter) => {
+  const handleSearch = async (
+    query: string = searchQuery,
+    currentFilter: string = filter,
+    selectedCategory: string = category
+  ) => {
     if (!query.trim()) return;
-    
+
     setIsLoading(true);
     try {
-      // For demonstration, we're using mock data
-      // In a real app, this would call the API
-      // const results = await stocksAPI.searchStocks(query, filter);
-      const results = getMockData.searchStocks(query);
-      
-      // Apply filters if needed
-      let filteredResults = [...results];
-      if (currentFilter === "gainers") {
-        filteredResults = results.filter(stock => stock.change > 0);
-      } else if (currentFilter === "losers") {
-        filteredResults = results.filter(stock => stock.change < 0);
-      }
-      
-      setSearchResults(filteredResults);
-      
-      // Update URL for sharing
+      const results = await stocksAPI.searchStocks(query, currentFilter, selectedCategory);
+      setSearchResults(results);
+
       const searchParams = new URLSearchParams();
       searchParams.set("q", query);
+      if (currentFilter !== "all") searchParams.set("filter", currentFilter);
+      if (selectedCategory !== "all") searchParams.set("category", selectedCategory);
       navigate(`${location.pathname}?${searchParams.toString()}`);
     } catch (error) {
       console.error("Search failed:", error);
@@ -84,9 +79,7 @@ const Search = () => {
     }
 
     try {
-      // In a real app, call the API
-      // await watchlistAPI.addToWatchlist(symbol);
-      
+      await watchlistAPI.addToWatchlist(symbol);
       toast({
         title: "Added to watchlist",
         description: `${symbol} has been added to your watchlist`,
@@ -101,60 +94,78 @@ const Search = () => {
     }
   };
 
-  const handleFilterChange = (value: string) => {
-    setFilter(value);
-    handleSearch(searchQuery, value);
-  };
-
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleSearch();
   };
 
+  const handleFilterChange = (value: string) => {
+    setFilter(value);
+    handleSearch(searchQuery, value, category);
+  };
+
+  const handleCategoryChange = (value: string) => {
+    setCategory(value);
+    handleSearch(searchQuery, filter, value);
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      
+
       <main className="flex-1 container mx-auto py-8 px-4">
         <h1 className="text-2xl font-bold mb-6">Search Stocks</h1>
-        
-        {/* Search form */}
-        <div className="mb-8">
-          <form onSubmit={handleSearchSubmit} className="flex flex-col md:flex-row gap-4">
-            <div className="relative flex-1">
-              <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
-              <Input
-                type="search"
-                placeholder="Search for stocks by name or symbol..."
-                className="pl-9 pr-4"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
+
+        <form onSubmit={handleSearchSubmit} className="flex flex-col md:flex-row gap-4 mb-8">
+          <div className="relative flex-1">
+            <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
+            <Input
+              type="search"
+              placeholder="Search for stocks by name or symbol..."
+              className="pl-9 pr-4"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+
+          <div className="flex items-center flex-wrap gap-4">
+            <div className="w-40">
+              <Select value={filter} onValueChange={handleFilterChange}>
+                <SelectTrigger>
+                  <Filter className="h-4 w-4 mr-2" />
+                  <SelectValue placeholder="Filter" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All</SelectItem>
+                  <SelectItem value="gainers">Gainers</SelectItem>
+                  <SelectItem value="losers">Losers</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-            
-            <div className="flex items-center space-x-4">
-              <div className="w-40">
-                <Select value={filter} onValueChange={handleFilterChange}>
-                  <SelectTrigger>
-                    <Filter className="h-4 w-4 mr-2" />
-                    <SelectValue placeholder="Filter" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Stocks</SelectItem>
-                    <SelectItem value="gainers">Gainers</SelectItem>
-                    <SelectItem value="losers">Losers</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <Button type="submit">
-                Search
-              </Button>
+
+            <div className="w-48">
+              <Select value={category} onValueChange={handleCategoryChange}>
+                <SelectTrigger>
+                  <Filter className="h-4 w-4 mr-2" />
+                  <SelectValue placeholder="Category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Categories</SelectItem>
+                  <SelectItem value="automotive">Automotive</SelectItem>
+                  <SelectItem value="electronics">Electronics</SelectItem>
+                  <SelectItem value="finance">Finance</SelectItem>
+                  <SelectItem value="oil_stocks">Oil Stocks</SelectItem>
+                  <SelectItem value="telecommunication">Telecommunication</SelectItem>
+                  <SelectItem value="ITindustry">IT Industry</SelectItem>
+                  <SelectItem value="renewable_energy">Renewable Energy</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-          </form>
-        </div>
-        
-        {/* Results */}
+
+            <Button type="submit">Search</Button>
+          </div>
+        </form>
+
         <div className="space-y-6">
           {isLoading ? (
             <div className="animate-pulse space-y-4">
@@ -193,17 +204,11 @@ const Search = () => {
           )}
         </div>
       </main>
-      
+
       <footer className="bg-gray-50 border-t border-gray-200 py-8 mt-8">
-        <div className="container mx-auto px-4">
-          <div className="text-center text-gray-500 text-sm">
-            <p>
-              &copy; {new Date().getFullYear()} Market Vista Insights. All rights reserved.
-            </p>
-            <p className="mt-2">
-              Market data provided for informational purposes only. Not financial advice.
-            </p>
-          </div>
+        <div className="container mx-auto px-4 text-center text-gray-500 text-sm">
+          <p>&copy; {new Date().getFullYear()} Market Vista Insights. All rights reserved.</p>
+          <p className="mt-2">Market data provided for informational purposes only. Not financial advice.</p>
         </div>
       </footer>
     </div>

@@ -15,7 +15,7 @@ app.use(cors());
 // Define Routes
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/stocks', require('./routes/api/stocks'));
-app.use('/api/watchlist', require('./routes/api/watchlist'));
+app.use('/api/watchlist', require('./routes/api/watchlist')); // Watchlist route
 
 // Basic route for testing
 app.get('/', (req, res) => {

@@ -1,24 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const watchlistController = require('../../controllers/watchlistController');
-const auth = require('../../middleware/auth');
+const { addToWatchlist, getWatchlistItems } = require("../../controllers/watchlistController");
 
-// All watchlist routes require authentication
-router.use(auth);
+// Add stock to watchlist
+router.post("/", addToWatchlist);
 
-// @route   GET api/watchlist
-// @desc    Get user's watchlist
-// @access  Private
-router.get('/', watchlistController.getWatchlist);
+// Get all watchlist items for a user
+router.get("/:userId", getWatchlistItems);
 
-// @route   POST api/watchlist
-// @desc    Add stock to watchlist
-// @access  Private
-router.post('/', watchlistController.addToWatchlist);
-
-// @route   DELETE api/watchlist/:id
-// @desc    Remove stock from watchlist
-// @access  Private
-router.delete('/:id', watchlistController.removeFromWatchlist);
-
-module.exports = router;
+module.exports = router;
