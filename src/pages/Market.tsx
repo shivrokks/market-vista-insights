@@ -35,12 +35,13 @@ const Market: React.FC = () => {
 
   // Mock data for sector performance
   const sectorData = [
-    { name: 'Technology', performance: 2.4 },
-    { name: 'Healthcare', performance: 1.3 },
+    { name: 'IT Industry', performance: 2.4 },
+    { name: 'Telecommunications', performance: 1.3 },
     { name: 'Finance', performance: -0.8 },
-    { name: 'Energy', performance: -1.2 },
-    { name: 'Consumer', performance: 0.5 },
-    { name: 'Utilities', performance: 0.2 },
+    { name: 'Renewable Energy', performance: -1.2 },
+    { name: 'Oil Stocks', performance: 0.5 },
+    { name: 'Auto Motive', performance: 0.2 },
+    { name: 'Electronics', performance: -0.2 },
   ];
 
   if (error) {

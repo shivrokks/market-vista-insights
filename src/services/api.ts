@@ -129,69 +129,63 @@ export const watchlistAPI = {
 };
 
 // Mock data function for development (until backend is connected)
+// Mock data function for development (until backend is connected)
 export const getMockData = {
   marketOverview: (): { indices: Stock[], topGainers: Stock[], topLosers: Stock[] } => {
     return {
       indices: [
-        { symbol: "PULZ", name: "PULZ", date: "11-Apr-25", price: 45.5, change: -0.5, changePercent: -1.09, volume: 10000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "09-Apr-25", price: 46, change: 1, changePercent: 2.22, volume: 6000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "08-Apr-25", price: 45, change: -1.05, changePercent: -2.28, volume: 30000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "04-Apr-25", price: 46, change: -1.75, changePercent: -3.66, volume: 16000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "03-Apr-25", price: 47.75, change: 2.25, changePercent: 4.95, volume: 48000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "02-Apr-25", price: 45.5, change: 2.05, changePercent: 4.72, volume: 6000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "01-Apr-25", price: 43.45, change: 1.7, changePercent: 4.07, volume: 16000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "28-Mar-25", price: 41.75, change: -1.75, changePercent: -4.02, volume: 24000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "27-Mar-25", price: 43.5, change: -1.85, changePercent: -4.08, volume: 18000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "26-Mar-25", price: 45.5, change: -1, changePercent: -2.15, volume: 24000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "25-Mar-25", price: 46.5, change: 0.15, changePercent: 0.32, volume: 14000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "24-Mar-25", price: 47.25, change: 2.25, changePercent: 5.0, volume: 64000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "21-Mar-25", price: 45, change: 1.1, changePercent: 2.51, volume: 22000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "20-Mar-25", price: 43.9, change: 2.05, changePercent: 4.9, volume: 16000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "19-Mar-25", price: 41.85, change: 1.95, changePercent: 4.89, volume: 10000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "18-Mar-25", price: 39.9, change: 0.85, changePercent: 2.18, volume: 36000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "17-Mar-25", price: 39.25, change: -0.8, changePercent: -2.0, volume: 60000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "13-Mar-25", price: 40.5, change: -0.2, changePercent: -0.49, volume: 26000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "12-Mar-25", price: 40.7, change: -2.15, changePercent: -5.02, volume: 18000, marketCap: 0 },
+        { symbol: "AIRTEL", name: "Bharti Airtel Ltd.", price: 1715.55, change: -0.28, changePercent: -0.02, volume: 9907628, marketCap: 1047400.28 },
+        { symbol: "IDEA", name: "Vodafone Idea Ltd.", price: 12.34, change: 0.12, changePercent: 0.98, volume: 1234567, marketCap: 23456.78 },
+        { symbol: "TATA COMM", name: "Tata Communications Ltd.", price: 1050.50, change: -5.00, changePercent: -0.47, volume: 2345678, marketCap: 34567.89 },
+        { symbol: "TEJAS NET", name: "Tejas Networks Ltd.", price: 350.75, change: 5.50, changePercent: 1.59, volume: 3456789, marketCap: 45678.90 },
+        { symbol: "CENTUM", name: "Centum Electronics Ltd.", price: 450.25, change: -2.25, changePercent: -0.50, volume: 4567890, marketCap: 56789.01 },
+        { symbol: "CYIENT", name: "Cyient Ltd.", price: 550.00, change: 10.00, changePercent: 1.85, volume: 5678901, marketCap: 67890.12 },
+        { symbol: "PGEL", name: "PG Electroplast Ltd.", price: 150.50, change: -1.50, changePercent: -0.99, volume: 6789012, marketCap: 78901.23 },
+        { symbol: "PULZ", name: "Pulses Inc.", price: 76.01, change: 0.95, changePercent: 1.26, volume: 6031521, marketCap: 0 },
+        { symbol: "BPL", name: "BPL Ltd.", price: 200.00, change: 2.00, changePercent: 1.01, volume: 7890123, marketCap: 89012.34 },
+        { symbol: "BAJFIN", name: "Bajaj Finance Ltd.", price: 8000.00, change: -50.00, changePercent: -0.62, volume: 8901234, marketCap: 90123.45 },
+        { symbol: "CSLFIN", name: "CSL Finance Ltd.", price: 300.00, change: 3.00, changePercent: 1.01, volume: 9012345, marketCap: 12345.67 },
+        { symbol: "TCIFIN", name: "TCI Finance Ltd.", price: 250.00, change: -2.00, changePercent: -0.80, volume: 1234567, marketCap: 23456.78 },
+        { symbol: "VLSFIN", name: "VLS Finance Ltd.", price: 100.00, change: 1.00, changePercent: 1.00, volume: 2345678, marketCap: 34567.89 },
+        { symbol: "HCLTECH", name: "HCL Technologies Ltd.", price: 1000.00, change: -10.00, changePercent: -0.99, volume: 3456789, marketCap: 45678.90 },
+        { symbol: "INFY", name: "Infosys Ltd.", price: 1500.00, change: 15.00, changePercent: 1.01, volume: 4567890, marketCap: 56789.01 },
+        { symbol: "RELI", name: "Reliance Industries Ltd.", price: 2000.00, change: -20.00, changePercent: -0.99, volume: 5678901, marketCap: 67890.12 },
+        { symbol: "TCS", name: "Tata Consultancy Services Ltd.", price: 3000.00, change: 30.00, changePercent: 1.01, volume: 6789012, marketCap: 78901.23 },
+        { symbol: "WIPRO", name: "Wipro Ltd.", price: 400.00, change: -4.00, changePercent: -0.99, volume: 7890123, marketCap: 89012.34 },
+        { symbol: "BPCL", name: "Bharat Petroleum Corp. Ltd.", price: 500.00, change: 5.00, changePercent: 1.01, volume: 8901234, marketCap: 90123.45 },
+        { symbol: "CASTROL", name: "Castrol India Ltd.", price: 150.00, change: -1.50, changePercent: -0.99, volume: 9012345, marketCap: 12345.67 },
+        { symbol: "DEEPINDS", name: "Deep Industries Ltd.", price: 200.00, change: 2.00, changePercent: 1.01, volume: 2345678, marketCap: 34567.89 },
+        { symbol: "GAIL", name: "GAIL (India) Ltd.", price: 300.00, change: -3.00, changePercent: -0.99, volume: 3456789, marketCap: 45678.90 },
+        { symbol: "JINDIL", name: "Jindal Drilling & Industries Ltd.", price: 350.00, change: 3.00, changePercent: 0.86, volume: 4567890, marketCap: 56789.01 },
+        { symbol: "ADANIGREEN", name: "Adani Green Energy Ltd.", price: 400.00, change: -4.00, changePercent: -0.99, volume: 5678901, marketCap: 67890.12 },
+        { symbol: "JSWENE", name: "JSW Energy Ltd.", price: 450.00, change: 4.50, changePercent: 1.01, volume: 6789012, marketCap: 78901.23 },
+        { symbol: "KPIGR", name: "KPI Green Energy Ltd.", price: 500.00, change: -5.00, changePercent: -0, volume: 6031521, marketCap: 0 }
       ],
       topGainers: [
-        { symbol: "PULZ", name: "PULZ", date: "11-Apr-25", price: 45.5, change: -0.5, changePercent: -1.09, volume: 10000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "09-Apr-25", price: 46, change: 1, changePercent: 2.22, volume: 6000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "08-Apr-25", price: 45, change: -1.05, changePercent: -2.28, volume: 30000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "04-Apr-25", price: 46, change: -1.75, changePercent: -3.66, volume: 16000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "03-Apr-25", price: 47.75, change: 2.25, changePercent: 4.95, volume: 48000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "02-Apr-25", price: 45.5, change: 2.05, changePercent: 4.72, volume: 6000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "01-Apr-25", price: 43.45, change: 1.7, changePercent: 4.07, volume: 16000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "28-Mar-25", price: 41.75, change: -1.75, changePercent: -4.02, volume: 24000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "27-Mar-25", price: 43.5, change: -1.85, changePercent: -4.08, volume: 18000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "26-Mar-25", price: 45.5, change: -1, changePercent: -2.15, volume: 24000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "25-Mar-25", price: 46.5, change: 0.15, changePercent: 0.32, volume: 14000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "24-Mar-25", price: 47.25, change: 2.25, changePercent: 5.0, volume: 64000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "21-Mar-25", price: 45, change: 1.1, changePercent: 2.51, volume: 22000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "20-Mar-25", price: 43.9, change: 2.05, changePercent: 4.9, volume: 16000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "19-Mar-25", price: 41.85, change: 1.95, changePercent: 4.89, volume: 10000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "18-Mar-25", price: 39.9, change: 0.85, changePercent: 2.18, volume: 36000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "17-Mar-25", price: 39.25, change: -0.8, changePercent: -2.0, volume: 60000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "13-Mar-25", price: 40.5, change: -0.2, changePercent: -0.49, volume: 26000, marketCap: 0 },
-        { symbol: "PULZ", name: "PULZ", date: "12-Mar-25", price: 40.7, change: -2.15, changePercent: -5.02, volume: 18000, marketCap: 0 },
+        { symbol: "CYIENT", name: "Cyient Ltd.", price: 550.00, change: 10.00, changePercent: 1.85, volume: 5678901, marketCap: 67890.12 },
+        { symbol: "INFY", name: "Infosys Ltd.", price: 1500.00, change: 15.00, changePercent: 1.01, volume: 4567890, marketCap: 56789.01 },
+        { symbol: "TCS", name: "Tata Consultancy Services Ltd.", price: 3000.00, change: 30.00, changePercent: 1.01, volume: 6789012, marketCap: 78901.23 },
+        { symbol: "TEJAS NET", name: "Tejas Networks Ltd.", price: 350.75, change: 5.50, changePercent: 1.59, volume: 3456789, marketCap: 45678.90 },
+        { symbol: "BPL", name: "BPL Ltd.", price: 200.00, change: 2.00, changePercent: 1.01, volume: 7890123, marketCap: 89012.34 }
       ],
       topLosers: [
-        { symbol: "META", name: "Meta Platforms", price: 474.36, change: -6.72, changePercent: -1.4, volume: 15800000, marketCap: 1210000000000 },
-        { symbol: "TSLA", name: "Tesla, Inc.", price: 175.34, change: -3.45, changePercent: -1.93, volume: 92500000, marketCap: 558000000000 },
-        { symbol: "AMZN", name: "Amazon", price: 178.22, change: -2.31, changePercent: -1.28, volume: 36400000, marketCap: 1850000000000 },
+        { symbol: "BAJFIN", name: "Bajaj Finance Ltd.", price: 8000.00, change: -50.00, changePercent: -0.62, volume: 8901234, marketCap: 90123.45 },
+        { symbol: "RELI", name: "Reliance Industries Ltd.", price: 2000.00, change: -20.00, changePercent: -0.99, volume: 5678901, marketCap: 67890.12 },
+        { symbol: "HCLTECH", name: "HCL Technologies Ltd.", price: 1000.00, change: -10.00, changePercent: -0.99, volume: 3456789, marketCap: 45678.90 },
+        { symbol: "BPCL", name: "Bharat Petroleum Corp. Ltd.", price: 500.00, change: 5.00, changePercent: 1.01, volume: 8901234, marketCap: 90123.45 },
+        { symbol: "ADANIGREEN", name: "Adani Green Energy Ltd.", price: 400.00, change: -4.00, changePercent: -0.99, volume: 5678901, marketCap: 67890.12 }
       ]
     };
   },
-  
+
   stockDetails: (symbol: string): { details: Stock, historicalData: any[] } => {
     const mockStocks: Record<string, Stock> = {
-      "AAPL": { symbol: "AAPL", name: "Apple Inc.", price: 169.58, change: 4.38, changePercent: 2.65, volume: 76500000, marketCap: 2650000000000, sector: "Technology" },
-      "MSFT": { symbol: "MSFT", name: "Microsoft", price: 425.52, change: 8.97, changePercent: 2.15, volume: 28900000, marketCap: 3160000000000, sector: "Technology" },
-      "NVDA": { symbol: "NVDA", name: "NVIDIA", price: 881.86, change: 15.37, changePercent: 1.77, volume: 42300000, marketCap: 2170000000000, sector: "Technology" },
+      "PULZ": { symbol: "PULZ", name: "PULZ", price: 76.01, change: 0.95, changePercent: 1.26, volume: 6031521, marketCap: 0, sector: "Textiles" },
       "META": { symbol: "META", name: "Meta Platforms", price: 474.36, change: -6.72, changePercent: -1.4, volume: 15800000, marketCap: 1210000000000, sector: "Technology" },
       "TSLA": { symbol: "TSLA", name: "Tesla, Inc.", price: 175.34, change: -3.45, changePercent: -1.93, volume: 92500000, marketCap: 558000000000, sector: "Automotive" },
       "AMZN": { symbol: "AMZN", name: "Amazon", price: 178.22, change: -2.31, changePercent: -1.28, volume: 36400000, marketCap: 1850000000000, sector: "Consumer Cyclical" },
     };
-    
+
     const stock = mockStocks[symbol] || {
       symbol,
       name: `Unknown Stock (${symbol})`,
@@ -201,63 +195,55 @@ export const getMockData = {
       volume: 0,
       marketCap: 0,
     };
-    
+
     // Generate mock historical data
     const historicalData = [];
     const today = new Date();
     for (let i = 30; i >= 0; i--) {
       const date = new Date();
       date.setDate(today.getDate() - i);
-      const basePrice = 100;
-      const randomFactor = 0.1; // 10% variation
+      const basePrice = stock.price || 100;
+      const randomFactor = 0.1;
       const priceVariation = basePrice * randomFactor * (Math.random() - 0.5);
-      
+
       historicalData.push({
         date: date.toISOString().split('T')[0],
-        price: basePrice + priceVariation,
+        price: +(basePrice + priceVariation).toFixed(2),
         volume: Math.floor(Math.random() * 10000000) + 1000000,
       });
     }
-    
+
     return { details: stock, historicalData };
   },
-  
+
   searchStocks: (query: string): Stock[] => {
     const allStocks = [
-      { symbol: "AAPL", name: "Apple Inc.", price: 169.58, change: 4.38, changePercent: 2.65, volume: 76500000, marketCap: 2650000000000 },
-      { symbol: "MSFT", name: "Microsoft", price: 425.52, change: 8.97, changePercent: 2.15, volume: 28900000, marketCap: 3160000000000 },
-      { symbol: "GOOGL", name: "Alphabet Inc.", price: 152.50, change: 2.85, changePercent: 1.90, volume: 22900000, marketCap: 1900000000000 },
-      { symbol: "AMZN", name: "Amazon", price: 178.22, change: -2.31, changePercent: -1.28, volume: 36400000, marketCap: 1850000000000 },
-      { symbol: "NVDA", name: "NVIDIA", price: 881.86, change: 15.37, changePercent: 1.77, volume: 42300000, marketCap: 2170000000000 },
+      { symbol: "PULZ", name: "PULZ", price: 76.01, change: 0.95, changePercent: 1.26, volume: 6031521, marketCap: 0 },
       { symbol: "META", name: "Meta Platforms", price: 474.36, change: -6.72, changePercent: -1.4, volume: 15800000, marketCap: 1210000000000 },
       { symbol: "TSLA", name: "Tesla, Inc.", price: 175.34, change: -3.45, changePercent: -1.93, volume: 92500000, marketCap: 558000000000 },
-      { symbol: "BRK-B", name: "Berkshire Hathaway", price: 407.68, change: 3.24, changePercent: 0.80, volume: 3900000, marketCap: 890000000000 },
-      { symbol: "JPM", name: "JPMorgan Chase", price: 196.46, change: 2.56, changePercent: 1.32, volume: 8700000, marketCap: 565000000000 },
-      { symbol: "V", name: "Visa Inc.", price: 276.96, change: 1.98, changePercent: 0.72, volume: 5600000, marketCap: 560000000000 },
+      { symbol: "AMZN", name: "Amazon", price: 178.22, change: -2.31, changePercent: -1.28, volume: 36400000, marketCap: 1850000000000 },
     ];
-    
+
     if (!query) return allStocks;
-    
+
     const lowerQuery = query.toLowerCase();
     return allStocks.filter(
-      stock => stock.symbol.toLowerCase().includes(lowerQuery) || 
+      stock => stock.symbol.toLowerCase().includes(lowerQuery) ||
                stock.name.toLowerCase().includes(lowerQuery)
     );
   },
-  
+
   watchlist: (): { items: WatchlistItem[], stocks: Stock[] } => {
     const items: WatchlistItem[] = [
-      { id: "1", userId: "user1", stockSymbol: "AAPL", dateAdded: new Date().toISOString() },
-      { id: "2", userId: "user1", stockSymbol: "MSFT", dateAdded: new Date().toISOString() },
-      { id: "3", userId: "user1", stockSymbol: "NVDA", dateAdded: new Date().toISOString() },
+      { id: "1", userId: "user1", stockSymbol: "PULZ", dateAdded: new Date().toISOString() },
+      { id: "2", userId: "user1", stockSymbol: "META", dateAdded: new Date().toISOString() },
     ];
-    
+
     const stocks: Stock[] = [
-      { symbol: "AAPL", name: "Apple Inc.", price: 169.58, change: 4.38, changePercent: 2.65, volume: 76500000, marketCap: 2650000000000 },
-      { symbol: "MSFT", name: "Microsoft", price: 425.52, change: 8.97, changePercent: 2.15, volume: 28900000, marketCap: 3160000000000 },
-      { symbol: "NVDA", name: "NVIDIA", price: 881.86, change: 15.37, changePercent: 1.77, volume: 42300000, marketCap: 2170000000000 },
+      { symbol: "PULZ", name: "PULZ", price: 76.01, change: 0.95, changePercent: 1.26, volume: 6031521, marketCap: 0 },
+      { symbol: "META", name: "Meta Platforms", price: 474.36, change: -6.72, changePercent: -1.4, volume: 15800000, marketCap: 1210000000000 },
     ];
-    
+
     return { items, stocks };
   },
 };
