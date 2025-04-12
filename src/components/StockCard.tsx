@@ -49,7 +49,7 @@ const StockCard: React.FC<StockCardProps> = ({
           </Link>
           
           <div className="text-right">
-            <p className="font-medium text-lg">${price.toFixed(2)}</p>
+            <p className="font-medium text-lg">₹{price.toFixed(2)}</p>
             <div className={`flex items-center justify-end ${changeClass}`}>
               {isPositive ? (
                 <TrendingUp className="h-3.5 w-3.5 mr-1" />

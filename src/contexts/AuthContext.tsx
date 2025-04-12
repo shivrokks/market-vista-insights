@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { authAPI, User } from "@/services/api";
 import { useToast } from "@/components/ui/use-toast";
@@ -34,17 +33,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setIsLoading(false);
         return;
       }
-      
+
       try {
         const userData = await authAPI.getCurrentUser();
         setUser(userData);
+        if (userData.id) {
+          localStorage.setItem("userId", userData.id.toString());
+        }
       } catch (error) {
         localStorage.removeItem("authToken");
+        localStorage.removeItem("userId");
       } finally {
         setIsLoading(false);
       }
     };
-    
+
     checkAuthStatus();
   }, []);
 
@@ -53,18 +56,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setIsLoading(true);
       const userData = await authAPI.login(email, password);
-      
-      // Save token to local storage
+
       if (userData.token) {
         localStorage.setItem("authToken", userData.token);
       }
-      
+      if (userData.id) {
+        localStorage.setItem("userId", userData.id.toString());
+      }
+
       setUser(userData);
       toast({
         title: "Login successful",
         description: `Welcome back, ${userData.name}!`,
       });
-      
+
     } catch (error) {
       toast({
         title: "Login failed",
@@ -82,18 +87,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setIsLoading(true);
       const userData = await authAPI.register(name, email, password);
-      
-      // Save token to local storage
+
       if (userData.token) {
         localStorage.setItem("authToken", userData.token);
       }
-      
+      if (userData.id) {
+        localStorage.setItem("userId", userData.id.toString());
+      }
+
       setUser(userData);
       toast({
         title: "Registration successful",
         description: `Welcome, ${userData.name}!`,
       });
-      
+
     } catch (error) {
       toast({
         title: "Registration failed",
@@ -109,6 +116,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Logout function
   const logout = () => {
     authAPI.logout();
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userId");
     setUser(null);
     toast({
       title: "Logged out",

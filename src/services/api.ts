@@ -111,11 +111,11 @@ export const stocksAPI = {
 // Watchlist API
 export const watchlistAPI = {
   getWatchlist: async (): Promise<{ items: WatchlistItem[], stocks: Stock[] }> => {
-    return apiRequest<{ items: WatchlistItem[], stocks: Stock[] }>("/watchlist");
+    return apiRequest<{ items: WatchlistItem[], stocks: Stock[] }>("/watchlist/67f9f321d891439a83a148ad");
   },
   
   addToWatchlist: async (symbol: string): Promise<WatchlistItem> => {
-    return apiRequest<WatchlistItem>("/watchlist", {
+    return apiRequest<WatchlistItem>("/watchlist/67f9f321d891439a83a148ad", {
       method: "POST",
       body: JSON.stringify({ symbol }),
     });
@@ -240,8 +240,8 @@ export const getMockData = {
     ];
 
     const stocks: Stock[] = [
-      { symbol: "PULZ", name: "PULZ", price: 76.01, change: 0.95, changePercent: 1.26, volume: 6031521, marketCap: 0 },
-      { symbol: "META", name: "Meta Platforms", price: 474.36, change: -6.72, changePercent: -1.4, volume: 15800000, marketCap: 1210000000000 },
+      { symbol: "CYIENT", name: "CYIENT LTD.", price: 550.00, change: 10.00, changePercent: 1.85, volume: 5678901, marketCap: 67890.12},
+      { symbol: "HCLTECH", name: "HCL TECH", price: 1000.00, change: -10.00, changePercent: -0.99, volume: 3456789, marketCap: 45678.90 },
     ];
 
     return { items, stocks };
