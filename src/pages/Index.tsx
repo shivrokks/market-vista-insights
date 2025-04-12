@@ -44,7 +44,11 @@ const Index = () => {
         
         // Get featured stock data (Apple in this example)
         const featuredStockData = getMockData.stockDetails("AAPL");
-        setFeaturedStock(featuredStockData);
+        // Fix the mismatch in property names - map 'details' to 'stock'
+        setFeaturedStock({
+          stock: featuredStockData.details,
+          historicalData: featuredStockData.historicalData
+        });
       } catch (error) {
         console.error("Failed to fetch market data:", error);
         toast({

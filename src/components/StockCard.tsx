@@ -19,6 +19,11 @@ const StockCard: React.FC<StockCardProps> = ({
   showAddButton = false,
   className = "",
 }) => {
+  // Add null check for stock to prevent accessing properties of undefined
+  if (!stock) {
+    return null;
+  }
+
   const {
     symbol,
     name,
