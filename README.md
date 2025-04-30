@@ -1,8 +1,4 @@
-# Mock GATE Portal
 
-A modern web application to help students prepare for the GATE examination through mock tests, progress tracking, and skill improvement.
-
----
 
 ## 🚀 Project Stack
 
